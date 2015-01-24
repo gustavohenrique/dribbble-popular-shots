@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="ui secondary pointing menu">
+        <a class="active item">
+            <i class="dribbble icon"></i> Popular
+        </a>
+        <a class="item">
+            <i class="star icon"></i> Favorites
+        </a>
+
+        <div class="right menu">
+            <a class="item">
+              <i class="left arrow icon"></i> Previous
+            </a>
+            <a class="item">
+              Next <i class="icon right arrow"></i>
+            </a>
+        </div>
+        
+    </div>
+
+    <div class="ui five cards" ng-controller="ShotController">
+        <div class="card">
+            <div class="image">
+                <img src="/images/avatar/large/elliot.jpg">
+            </div>
+            <div class="content">
+                <div class="header">Elliot Fu</div>
+                <div class="meta">
+                    <a class="group">Friends</a>
+                </div>
+                <div class="description">
+                    Elliot Fu is a film-maker from New York.
+                </div>
+            </div>
+            <div class="extra content">
+                <a class="right floated created">
+                    Joined in 2011
+                </a>
+                <a class="friends">
+                    <i class="user icon"></i>
+                    22 Friends
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
