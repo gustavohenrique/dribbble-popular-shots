@@ -8,3 +8,7 @@ h4.ui.inverted.black.block.header {
   padding-right: 10px;
   width: 100%;
 }
+
+.shot.mini.description {
+    height: 131px;
+}

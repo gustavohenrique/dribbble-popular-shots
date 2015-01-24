@@ -1,51 +1,59 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-    <div class="ui secondary pointing menu">
-        <a class="active item">
-            <i class="dribbble icon"></i> Popular
-        </a>
-        <a class="item">
-            <i class="star icon"></i> Favorites
-        </a>
+    {% verbatim %}
 
-        <div class="right menu">
-            <a class="item">
-              <i class="left arrow icon"></i> Previous
+    <div ng-controller="ShotCtrl">
+
+        <div class="ui secondary pointing menu">
+            <a class="active item">
+                <i class="dribbble icon"></i> Popular
             </a>
             <a class="item">
-              Next <i class="icon right arrow"></i>
+                <i class="star icon"></i> Favorites
             </a>
+
+            <div class="right menu" pagination></div>
+            
         </div>
-        
+
+        <div class="ui four doubling cards">
+            <div class="card" ng-repeat="item in shots">
+                <div class="image">
+                    <img src="{{ item.images.normal }}" alt="">
+                </div>
+                <div class="content">
+                    <div class="header">{{ item.title | limitTo : 30 }}</div>
+                    <div class="meta">
+                        <a class="group">{{ item.created_at | date : 'dd/MM/yyyy' }}</a>
+                    </div>
+                    <div class="shot mini description">
+                        {{ item.description | limitTextWidth }}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="friends">
+                        <i class="unhide icon"></i>{{ item.views_count }}
+                    </a>
+                    &nbsp;
+                    <a class="friends">
+                        <i class="comment icon"></i>{{ item.comments_count }}
+                    </a>
+                    &nbsp;
+                    <a class="friends">
+                        <i class="heart icon"></i>{{ item.likes_count }}
+                    </a>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="add icon"></i>
+                    Add to favorites
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="ui five cards" ng-controller="ShotController">
-        <div class="card">
-            <div class="image">
-                <img src="/images/avatar/large/elliot.jpg">
-            </div>
-            <div class="content">
-                <div class="header">Elliot Fu</div>
-                <div class="meta">
-                    <a class="group">Friends</a>
-                </div>
-                <div class="description">
-                    Elliot Fu is a film-maker from New York.
-                </div>
-            </div>
-            <div class="extra content">
-                <a class="right floated created">
-                    Joined in 2011
-                </a>
-                <a class="friends">
-                    <i class="user icon"></i>
-                    22 Friends
-                </a>
-            </div>
-        </div>
-    </div>
-
-
+    {% endverbatim %}
 
 {% endblock %}
