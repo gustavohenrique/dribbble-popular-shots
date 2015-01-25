@@ -10,6 +10,8 @@
             var handleError = function (res) {};
             
             $scope.page = 1;
+            $scope.shouldHideShots = false;
+            
             
             $scope.findAll = function () {
                 shotService.listPopular($scope.page, function (res) {
@@ -20,8 +22,24 @@
             };
 
             $scope.findAll();
+
+            $scope.showDetail = function (item) {
+                $scope.shouldHideShots = true;
+                $scope.shot = item;
+            };
+
+            $scope.closeDetail = function () {
+                $scope.shouldHideShots = false;
+                $scope.shot = {};
+            };
         }
     ]);
+
+    app.filter('htmlToPlaintext', function () {
+        return function(text) {
+            return String(text).replace(/<[^>]+>/gm, '');
+        }
+    });
 
     app.filter('limitTextWidth', function () {
         return function(text) {

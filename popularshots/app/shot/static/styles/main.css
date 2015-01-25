@@ -12,3 +12,22 @@ h4.ui.inverted.black.block.header {
 .shot.mini.description {
     height: 131px;
 }
+
+.shot.info {
+    margin-right: 10px;
+}
+
+i.shot.detail.close {
+  cursor: pointer;
+  float: right;
+  top: 2rem;
+  right: 0px;
+  margin: 0;
+  font-size: 20px;
+  color: #000000;
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}

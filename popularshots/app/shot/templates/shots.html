@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    {% verbatim %}
-
     <div ng-controller="ShotCtrl">
 
-        <div class="ui secondary pointing menu">
+        {% verbatim %}
+
+        <div class="ui secondary pointing menu" ng-hide="shouldHideShots">
             <a class="active item">
                 <i class="dribbble icon"></i> Popular
             </a>
@@ -15,14 +15,13 @@
             </a>
 
             <div class="right menu" pagination></div>
-            
         </div>
 
-        <div class="ui four doubling cards">
+        <div class="ui four doubling cards" ng-hide="shouldHideShots">
             <div class="card" ng-repeat="item in shots">
-                <div class="image">
-                    <img src="{{ item.images.normal }}" alt="">
-                </div>
+                <a class="image" ng-click="showDetail(item)">
+                    <img ng-attr-src="{{ item.images.normal }}" alt="Photo">
+                </a>
                 <div class="content">
                     <div class="header">{{ item.title | limitTo : 30 }}</div>
                     <div class="meta">
@@ -33,15 +32,13 @@
                     </div>
                 </div>
                 <div class="extra content">
-                    <a class="friends">
+                    <a class="shot info">
                         <i class="unhide icon"></i>{{ item.views_count }}
                     </a>
-                    &nbsp;
-                    <a class="friends">
+                    <a class="shot info">
                         <i class="comment icon"></i>{{ item.comments_count }}
                     </a>
-                    &nbsp;
-                    <a class="friends">
+                    <a class="shot info">
                         <i class="heart icon"></i>{{ item.likes_count }}
                     </a>
                 </div>
@@ -50,10 +47,15 @@
                     Add to favorites
                 </div>
             </div>
+
         </div>
+
+        {% endverbatim %}
+
+        {% include 'shot_detail.html' %}
 
     </div>
 
-    {% endverbatim %}
+    
 
 {% endblock %}
