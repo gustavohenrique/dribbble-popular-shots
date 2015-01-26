@@ -29,7 +29,7 @@
 
             var findFavorites = function () {
                 shotService.listFavorites(function (res) {
-                    $scope.shots = res;
+                    $scope.favorites = JSON.parse(res);
                 },
                 handleError);
             };
@@ -45,6 +45,18 @@
             };
 
             $scope.showTab = showTab;
+
+            $scope.addToFavorites = function (item, index) {
+                shotService.addToFavorites(item, function () {
+                    $scope.shots.splice(index, 1);
+                }, handleError)
+            };
+
+            $scope.removeFromFavorites = function (id) {
+                shotService.removeFromFavorites(id, function () {
+                    findFavorites();
+                }, handleError)
+            };
 
             $scope.showDetail = function (item) {
                 $scope.shouldHideShots = true;

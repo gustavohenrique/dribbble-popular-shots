@@ -65,6 +65,15 @@ class ShotTest(TestCase):
 
         self.assertEquals(1, len(shots))
 
+    def test_should_remove_favorite_using_the_id(self):
+        fake = json.loads(self.shot)
+        s = Shot.objects.create(
+            id=fake.get('id'), title=fake.get('title'), description=fake.get('description'),
+            html_url=fake.get('html_url'), image_url=fake.get('images').get('normal')
+        )
 
+        response = self.client.delete('/shot/favorites/remove/' + str(s.id), content_type=u'application/json')
+        self.assertEquals(200, response.status_code)
+        self.assertEquals(0, len(Shot.objects.filter(pk=s.id)))
 
 

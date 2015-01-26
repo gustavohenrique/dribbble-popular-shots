@@ -13,7 +13,7 @@
         </div>
 
         <div id="{{ tabs.popular }}" class="ui four doubling cards tab-content" ng-hide="shouldHideShots">
-            <div class="card" ng-repeat="item in shots">
+            <div class="card" ng-repeat="item in shots track by $index">
                 <a class="image" ng-click="showDetail(item)">
                     <img ng-attr-src="{{ item.images.normal }}" alt="Photo">
                 </a>
@@ -37,16 +37,33 @@
                         <i class="heart icon"></i>{{ item.likes_count }}
                     </a>
                 </div>
-                <div class="ui bottom attached button">
+                <a class="ui bottom attached button" ng-click="addToFavorites(item, $index)">
                     <i class="add icon"></i>
                     Add to favorites
-                </div>
+                </a>
             </div>
 
         </div>
 
         <div id="{{ tabs.favorites }}" class="ui four doubling cards tab-content hide" ng-hide="shouldHideShots">
-        teste
+            <div class="card" ng-repeat="item in favorites track by $index">
+                <a class="image" ng-href="{{ item.fields.html_url }}" target="_blank" title="View in other window">
+                    <img ng-attr-src="{{ item.fields.image_url }}" alt="Photo">
+                </a>
+                <div class="content">
+                    <div class="header">{{ item.fields.title | limitTo : 30 }}</div>
+                    <div class="meta">
+                        <a class="group">{{ item.fields.created_at | date : 'dd/MM/yyyy' }}</a>
+                    </div>
+                    <div class="shot mini description">
+                        {{ item.fields.description | limitTextWidth }}
+                    </div>
+                </div>
+                <a class="ui bottom attached button" ng-click="removeFromFavorites(item.pk)">
+                    <i class="remove icon"></i>
+                    Remove from favorites
+                </a>
+            </div>
         </div>
 
         {% endverbatim %}

@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, urlresolvers, get_object_or_404
 from django.http import JsonResponse
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 import json
 
@@ -11,6 +12,7 @@ from shot.models import Shot
 def shots(request):
     return render(request, 'shots.html')
 
+@csrf_exempt
 def add_to_favorites(request):
     status = 403
 
@@ -28,6 +30,18 @@ def add_to_favorites(request):
             status = 400
 
     return JsonResponse({}, status=status)
+
+def remove_from_favorites(request, id):
+    status = 403
+    if request.method == 'DELETE':
+        status = 200
+        try:
+            Shot.objects.filter(pk=id).delete()
+        except:
+            status = 400
+
+    return JsonResponse({}, status=status)
+
 
 def list_favorites(request):
     status = 403
