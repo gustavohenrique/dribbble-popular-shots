@@ -7,21 +7,44 @@
 
         function ($scope, shotService) {
 
-            var handleError = function (res) {};
+            var handleError = function (res) {
+                console.log('error', res);
+            };
             
+            var tabs = {
+                popular: 'Popular',
+                favorites: 'Favorites'
+            };
+            $scope.tabs = tabs;
             $scope.page = 1;
             $scope.shouldHideShots = false;
             
             
-            $scope.findAll = function () {
+            var findAll = function () {
                 shotService.listPopular($scope.page, function (res) {
                     $scope.shots = res;
-                    console.log(res[0]);
                 },
                 handleError);
             };
 
-            $scope.findAll();
+            var findFavorites = function () {
+                shotService.listFavorites(function (res) {
+                    $scope.shots = res;
+                },
+                handleError);
+            };
+
+            var showTab = function (tabName) {
+                if (tabName === tabs.popular) {
+                    findAll();
+                }
+
+                if (tabName === tabs.favorites) {
+                    findFavorites();
+                }
+            };
+
+            $scope.showTab = showTab;
 
             $scope.showDetail = function (item) {
                 $scope.shouldHideShots = true;
@@ -32,6 +55,8 @@
                 $scope.shouldHideShots = false;
                 $scope.shot = {};
             };
+
+            showTab(tabs.popular);
         }
     ]);
 

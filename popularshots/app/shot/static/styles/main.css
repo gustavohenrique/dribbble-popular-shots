@@ -31,3 +31,7 @@ i.shot.detail.close {
   -ms-transition: opacity 0.3s ease-out;
   transition: opacity 0.3s ease-out;
 }
+
+.tab-content.hide, .nav-pagination.hide {
+  display: none;
+}

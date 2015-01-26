@@ -15,6 +15,14 @@
             this.listPopular = function (page, success, error) {
                 $http.get(BASE_URL + '/shots/?page=' + page).success(success).error(error);
             };
+
+            this.listFavorites = function (success, error) {
+                $http.get(BASE_URL + '/shots/favorites/list').success(success).error(error);
+            }; 
+
+            this.addToFavorites = function (data, success, error) {
+                $http.post(BASE_URL + '/shots/favorites/add', data).success(success).error(error);
+            };            
         }
     ]);
 

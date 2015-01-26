@@ -7,17 +7,12 @@
         {% verbatim %}
 
         <div class="ui secondary pointing menu" ng-hide="shouldHideShots">
-            <a class="active item">
-                <i class="dribbble icon"></i> Popular
-            </a>
-            <a class="item">
-                <i class="star icon"></i> Favorites
-            </a>
-
-            <div class="right menu" pagination></div>
+            <a class="item active nav-item" icon="dribbble" text="{{ tabs.popular }}"></a>
+            <a class="item nav-item" icon="star" text="{{ tabs.favorites }}"></a>
+            <div class="right menu nav-pagination" pagination></div>
         </div>
 
-        <div class="ui four doubling cards" ng-hide="shouldHideShots">
+        <div id="{{ tabs.popular }}" class="ui four doubling cards tab-content" ng-hide="shouldHideShots">
             <div class="card" ng-repeat="item in shots">
                 <a class="image" ng-click="showDetail(item)">
                     <img ng-attr-src="{{ item.images.normal }}" alt="Photo">
@@ -48,6 +43,10 @@
                 </div>
             </div>
 
+        </div>
+
+        <div id="{{ tabs.favorites }}" class="ui four doubling cards tab-content hide" ng-hide="shouldHideShots">
+        teste
         </div>
 
         {% endverbatim %}
