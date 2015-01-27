@@ -1,20 +1,17 @@
 # coding: utf-8
+from django.test import TestCase, Client
+from django.conf import settings
 
-from django.test import TestCase
-from django.test import Client
-
-import json
 import os
+import json
 
 from shot.models import Shot
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-class ShotTest(TestCase):
+class ViewTest(TestCase):
 
     def setUp(self):
-        p = os.path.join(BASE_DIR, 'test/resources/shot.json')
+        p = os.path.join(settings.BASE_DIR, 'test/resources/shot.json')
         with open(p, 'r') as f:
             self.shot = f.read() #json.load(f)
 
@@ -75,5 +72,3 @@ class ShotTest(TestCase):
         response = self.client.delete('/shot/favorites/remove/' + str(s.id), content_type=u'application/json')
         self.assertEquals(200, response.status_code)
         self.assertEquals(0, len(Shot.objects.filter(pk=s.id)))
-
-

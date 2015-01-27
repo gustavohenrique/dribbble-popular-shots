@@ -17,15 +17,15 @@
             };
 
             this.listFavorites = function (success, error) {
-                $http.get('http://localhost:8000/shot/favorites/list').success(success).error(error);
+                $http.get('/shot/favorites/list').success(success).error(error);
             }; 
 
             this.addToFavorites = function (data, success, error) {
-                $http.post('http://localhost:8000/shot/favorites/add', data).success(success).error(error);
+                $http.post('/shot/favorites/add', data).success(success).error(error);
             }; 
 
             this.removeFromFavorites = function (id, success, error) {
-                $http.delete('http://localhost:8000/shot/favorites/remove/' + id).success(success).error(error);
+                $http.delete('/shot/favorites/remove/' + id).success(success).error(error);
             };            
         }
     ]);
