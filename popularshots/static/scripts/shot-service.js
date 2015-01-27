@@ -4,6 +4,10 @@
 
     var app = angular.module('ShotService', [], function ($httpProvider) {
         $httpProvider.interceptors.push('AuthInterceptor');
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
     });
 
     app.service('shotService', ['$http',
