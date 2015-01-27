@@ -1,7 +1,7 @@
 dribbble-popular-shots
 ======================
 
-List all the popular shots from dibbble.com. 
+List all the popular shots from dibbble.com.  
 This POC uses AngularJS, Semantic-UI and Django.
 
 ## Running
