@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = (
+    'admin_bootstrap',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,3 +65,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 USE_ETAGS = True
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+DATE_FORMAT = '%d/%m/%Y'
+DATE_INPUT_FORMATS = ('%d/%m/%Y', '%Y-%m-%d')
+DATETIME_INPUT_FORMATS = ('%d/%m/%Y', '%Y-%m-%d')

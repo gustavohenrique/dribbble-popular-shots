@@ -1,1 +1,4 @@
-Django===1.7.3
+Django==1.7.3
+admin-bootstrap==0.7.0
+selenium==2.44.0
+splinter==0.7.0
